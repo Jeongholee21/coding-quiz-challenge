@@ -1,31 +1,8 @@
 var menu = document.querySelector(".menu");
 var main = document.querySelector(".main");
-
+var quiz = document.querySelector(".quiz");
 
 var start = function () {
-    // VIEW HIGHSCORE (START PAGE)
-    var viewScoreEl = document.createElement("div");
-    var viewScorePEl = document.createElement("p");
-    viewScorePEl.textContent = "View Highscores";
-    viewScorePEl.className = "view-score";
-
-    menu.appendChild(viewScoreEl);
-    viewScoreEl.appendChild(viewScorePEl);
-
-    // TIMER (START PAGE)
-    var timeEl = document.createElement("div");
-    var timePEl = document.createElement("p");
-    var timeSpanEl = document.createElement("span")
-
-    timePEl.textContent = "Time: ";
-    timeSpanEl.textContent = "0";
-
-    timeSpanEl.className = "time";
-
-    menu.appendChild(timeEl);
-    timeEl.appendChild(timePEl);
-    timePEl.appendChild(timeSpanEl);
-
     // INTRODUCE CODING CHALLENGE (START PAGE)
     var introContainer = document.createElement("div");
     var h1El = document.createElement("h1");
@@ -49,8 +26,7 @@ var start = function () {
     //BUTTON 
     buttonEl.addEventListener("click", function () {
         introContainer.remove();
-        getQuestions();
-        //startTimer();
+        timeCount();
     });
 };
 
@@ -80,22 +56,61 @@ var quizQuestions = [
     }
 ]
 
+// Timer
+var timeCount = function () {
+quizCounter = 0;
+totalTime = 75;
+timeLeft.textContent = totalTime;
+
+    var startTimer = setInterval(function() {
+        totalTime--;
+        timeLeft.textContent = totalTime;
+        if (totalTime <= 0) {
+            clearInterval(startTimer);
+            if (quizCounter < quizQuestions.length - 1) {
+                //gmaeOver();
+            }
+        }
+    },1000);
+
+    getQuestions();
+};
+
 // A Question on the screen
 var getQuestions = function() {
     var questionContainer = document.createElement("div");
-    var questionItem = document.createElement("ol");
-    var questionChoicesEl = document.createElement("li");
+    var questionPEl = document.createElement("p");
+    var buttonContainer = document.createElement("div");
+    var button0 = document.createElement("button");
+    var button1 = document.createElement("button");
+    var button2 = document.createElement("button");
+    var button3 = document.createElement("button");
+    
+        questionPEl.textContent = quizQuestions[quizCounter].question;
+        button0.textContent = quizQuestions[quizCounter].choices[0];
+        button1.textContent = quizQuestions[quizCounter].choices[1];
+        button2.textContent = quizQuestions[quizCounter].choices[2];
+        button3.textContent = quizQuestions[quizCounter].choices[3];
 
-    for (var i = 0; i < quizQuestions.length; i++) {
-        questionItem.textContent = "quizQuestions[i].question";
-        questionChoicesEl.textContent = quizQuestions[i].choices;
-    
-        questionContainer.appendChild(questionItem);
-        questionItem.appendChild(questionChoicesEl);
-    
-        console.log(questionItem.textContent);
-        console.log(questionChoicesEl.textContent);
-    }
+        questionContainer.className = "question";
+        buttonContainer.className = "btns";
+        button0.className = "btn btn0";
+        button1.className = "btn btn1";
+        button2.className = "btn btn2";
+        button3.className = "btn btn3";
+
+
+        quiz.appendChild(questionContainer);
+        quiz.appendChild(buttonContainer);
+        questionContainer.appendChild(questionPEl);
+        questionContainer.appendChild(buttonContainer);
+        buttonContainer.appendChild(button0);
+        buttonContainer.appendChild(button1);
+        buttonContainer.appendChild(button2);
+        buttonContainer.appendChild(button3);
+        
 };
+
+
 
 start()
