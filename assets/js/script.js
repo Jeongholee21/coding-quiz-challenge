@@ -2,6 +2,11 @@ var menu = document.querySelector(".menu");
 var main = document.querySelector(".main");
 var quiz = document.querySelector(".quiz");
 
+var choice0 = document.querySelector(".btn0");
+var choice1 = document.querySelector(".btn1");
+var choice2 = document.querySelector(".btn2");
+var choice3 = document.querySelector(".btn3");
+
 var start = function () {
     // INTRODUCE CODING CHALLENGE (START PAGE)
     var introContainer = document.createElement("div");
@@ -32,7 +37,7 @@ var start = function () {
 
 //QUIZ QUESTIONS
 // Making Array and object all Questions
-// Making Randomizer all Questions
+// Making Randomizer all Questions : Extra
 var quizQuestions = [
     {
         question: "Commonly used data types DO NOT include:",
@@ -40,21 +45,26 @@ var quizQuestions = [
         answer: "3. alerts"
     },
     {
-        question: "What does HTML stand for?",
-        choices: ["1. Hypertext Machine Language", "2. Hypertext Tools Markup Links", "3. Hypertext Markup Language", "4. High-Tech Markup Lists"],
-        answer: "3. Hypertext Markup Language"
+        question: "The condition in an if/else statement is enclosed with __________.",
+        choices: ["1. quotes", "2. curly brackets", "3. paranthesis", "4. square brackets"],
+        answer: "3. paranthesis"
     },
     {
-        question: "What does DOM stand for?",
-        choices: ["1. Document Object Model", "2. Display Object Management", "3. Digital Ordinance Model", "4. Desktop Oriented Mode"],
-        answer: "1. Document Object Model"
+        question: "Arrays in Javascript can be used to store ____.",
+        choices: ["1. numbers and strings", "2. other arrays", "3. booleans", "4. all of the above"],
+        answer: "4. all of the above"
     },
     {
-        question: "How do you create a function in JavaScript?",
-        choices: ["1. function = myFunction()", "2. function:myFunction()", "3. function myFunction()", "4. $Function()"],
-        answer: "1. function myFunction()"
-    }
-]
+        question: "String values must be enclosed within ____ when being assigned to variables.",
+        choices: ["1. commas", "2. curly brackets", "3. quotes", "4. parenthesis"],
+        answer: "3. quotes"
+    },
+    {
+        question: "A very useful tool for used during development and debugging for printing content to the debugger is:",
+        choices: ["1. Javascript", "2. terminal / bash", "3. for loops", "4. console log"],
+        answer: "4. console log"
+    },
+];
 
 // Timer
 var timeCount = function () {
@@ -99,7 +109,6 @@ var getQuestions = function() {
         button2.className = "btn btn2";
         button3.className = "btn btn3";
 
-
         quiz.appendChild(questionContainer);
         quiz.appendChild(buttonContainer);
         questionContainer.appendChild(questionPEl);
@@ -107,10 +116,31 @@ var getQuestions = function() {
         buttonContainer.appendChild(button0);
         buttonContainer.appendChild(button1);
         buttonContainer.appendChild(button2);
-        buttonContainer.appendChild(button3);
+        buttonContainer.appendChild(button3);    
         
+        var btn0 = document.getElementsByClassName("btn0")
+        var btn1 = document.getElementsByClassName("btn1")
+        var btn2 = document.getElementsByClassName("btn2")
+        var btn3 = document.getElementsByClassName("btn3")
+    
+        
+        checkAnswer();
 };
 
 
-
+var checkAnswer = function () {
+    if (quizQuestions[quizCounter].answer === questions[quizCounter].choices[answer]) {
+        correctAns++;
+    } else {
+        totalTime -= 10;
+    }
+    questionIndex++;
+    if (quizCounter < quizQuestions.length) {
+        getQuestions();
+    }else {
+        //game over();
+    }
+};
 start()
+
+// Event Listeners
