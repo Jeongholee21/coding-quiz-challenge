@@ -15,7 +15,7 @@ As you proceed in your career as a web developer, you will probably be asked to 
 <https://jeongholee21.github.io/coding-quiz-challenge/>
 
 ## Screen Shot
-![Screenshot]()
+![Screenshot](https://github.com/Jeongholee21/coding-quiz-challenge/blob/main/assets/js/Screen%20Shot.jpg)
 
 ## User Story
 
