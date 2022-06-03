@@ -14,6 +14,9 @@ As you proceed in your career as a web developer, you will probably be asked to 
 # Live Webpage
 <https://jeongholee21.github.io/coding-quiz-challenge/>
 
+## Screen Shot
+![Screenshot]()
+
 ## User Story
 
 ```
